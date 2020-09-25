@@ -5,8 +5,10 @@ author: Zixiang Wang, Aayush Sharma Acharya, Dongwook Lee
 ---
 
 # Introduction
-
-We want to design a webservice that connects local business and people who want to buy from that local business. The service is free and open-source and only controlled via the open-source community. The local businesses will not be charged to use the service. 
+We want to design a webservice that connects local business and people who want
+to buy from that local business. The service is free and open-source and only
+controlled via the open-source community. The local businesses will not be
+charged to use the service. 
 
 Business here means Restaurants, Grocery Stores, Butchers or (any other small
 business). What exactly it is not necessary for the current scope of things.
@@ -20,7 +22,6 @@ the current scope of things.
    internet. And reduce our dependence on big corporations.
 
 # Objectives
-
 ### Immediate Objectives
 Make a minimum viable product that allows businesses to list the products and
 customers to buy the products.
@@ -37,7 +38,6 @@ customers to buy the products.
 
 
 # User Story
-
 ### User Story from buyer's side (Meaning what the customer sees)
 1. User can see a list of businesses in the homepage.
 2. Inside the list of business, buyer see Products descriptions (prices, product name, etc.)
@@ -50,7 +50,7 @@ customers to buy the products.
 1. Buyers cannot create a shop (or upload products to sell). Buyers can only by products.
 
 ### User Story from business owner's side (Meaning what the business sees or can do)
-1. Create a shop (virtual shop) in the website.
+1. Create a shop (virtual shop) in the website. Only one shop is only allowed by one business owner.
 2. Upload or Add his/her product in the website.
 3. Make or Increase his/her funds when the customer decides to buy the product. (we can add this later)
 
@@ -86,4 +86,4 @@ customers to buy the products.
 ### Relationship and its Attributes
 1. owns (ownerID)
 
-![Intial ER Diagram](ER.png "Intial ER Diagram")
+![Intial ER Diagram](assets/ER.png "Intial ER Diagram")
