@@ -1,0 +1,188 @@
+CREATE TABLE Transactioners(
+	transactioner_id	INT(10) NOT NULL,
+	username 			VARCHAR(200) NOT NULL,
+	email 				VARCHAR(200) NOT NULL,
+	phone_number 		VARCHAR(30) NOT NULL,
+	is_verified 		INT(1) NOT NULL DEFAULT 0,
+
+	PRIMARY KEY 		(transactioner_id)
+)
+
+CREATE TABLE Shop(
+
+	transactioner_id 	INT(10) NOT NULL,
+	username 			VARCHAR(200) NOT NULL,
+	email 				VARCHAR(200) NOT NULL,
+	phone_number 		VARCHAR(30) NOT NULL,
+	is_verified 		INT(1) NOT NULL DEFAULT 0,
+
+	shop_name 			VARCHAR(200) NOT NULL,
+	shop_description 	VARCHAR(1000) NOT NULL,
+	provides_delivery 	INT(1) NOT NULL DEFAULT 0
+
+	PRIMARY KEY 		(transactioner_id),
+	FOREIGN KEY 		(transactioner_id) REFERENCE Transactioners,
+	FOREIGN KEY 		(username) REFERENCE Transactioners,
+	FOREIGN KEY 		(email) REFERENCE Transactioners,
+	FOREIGN KEY 		(phone_number) REFERENCE Transactioners,
+	FOREIGN KEY 		(is_verified) REFERENCE Transactioners,
+)
+
+CREATE TABLE Buyer(
+	transactioner_id 	INT(10) NOT NULL,
+	username 			VARCHAR(200) NOT NULL,
+	email 				VARCHAR(200) NOT NULL,
+	phone_number 		VARCHAR(30) NOT NULL,
+	is_verified 		INT(1) NOT NULL DEFAULT 0,
+
+	buyer_name 			VARCHAR(200) NOT NULL,
+	buyer_bio 			VARCHAR(1000) NOT NULL,
+	buyer_picture 		VARCHAR(200) NOT NULL
+
+	PRIMARY KEY 		(transactioner_id),
+	FOREIGN KEY 		(transactioner_id) REFERENCES Transactioners
+	FOREIGN KEY 		(username) REFERENCE Transactioners,
+	FOREIGN KEY 		(email) REFERENCE Transactioners,
+	FOREIGN KEY 		(phone_number) REFERENCE Transactioners,
+	FOREIGN KEY 		(is_verified) REFERENCE Transactioners,
+)
+
+CREATE TABLE sell_list(
+	seller_shop_name 		VARCHAR(200) NOT NULL,
+	selling_commodity_id 	VARCHAR(200) NOT NULL,
+	PRIMARY KEY 			(commodity_id),
+	FOREIGN KEY 			(shop_name) REFERENCES shop,
+	FOREIGN KEY 			(commodity_id) REFERENCES Commodity
+)
+
+CREATE TABLE buy_list(
+	buyer_name 		VARCHAR(200) NOT NULL,
+	commodity_id 	VARCHAR(200) NOT NULL,
+	PRIMARY KEY 	(commodity_id),
+	FOREIGN KEY 	(buyer_name) REFERENCES Buyer,
+	FOREIGN KEY 	(commodity_id) REFERENCES Commodity
+)
+
+CREATE TABLE Commodity(
+	commodity_id 		VARCHAR(200) NOT NULL,
+	commodity_price 	INT(100) NOT NULL,
+	commodity_name 		VARCHAR(200) NOT NULL,
+	PRIMARY KEY 		(commodity_id)
+)
+
+CREATE TABLE Service(
+	commodity_id 			VARCHAR(200) NOT NULL,
+	commodity_price 		INT(100) NOT NULL,
+	commodity_name 		 	VARCHAR(200) NOT NULL,
+
+	service_location 		VARCHAR(1000) NOT NULL,
+	service_description		VARCHAR(1000) NOT NULL,
+
+	PRIMARY KEY 			(commodity_id),
+	FOREIGN KEY 			(commodity_id) REFERENCES Commodity,
+	FOREIGN KEY 			(commodity_price) REFERENCES Commodity,
+	FOREIGN KEY 			(commodity_name) REFERENCES Commodity
+)
+
+CREATE TABLE Item(
+	commodity_id 			VARCHAR(200) NOT NULL,
+	commodity_price 		INT(100) NOT NULL,
+	commodity_name 			VARCHAR(200) NOT NULL,
+
+	item_manufacturer 		VARCHAR(200) NOT NULL,
+
+	PRIMARY KEY				(commodity_id), 
+
+	FOREIGN KEY 			(commodity_id) REFERENCES Commodity,
+	FOREIGN KEY 			(commodity_price) REFERENCES Commodity,
+	FOREIGN KEY 			(commodity_name) REFERENCES Commodity
+)
+
+CREATE TABLE Grocery(
+	commodity_id 			VARCHAR(200) NOT NULL,
+	commodity_price 		INT(100) NOT NULL,
+	commodity_name 			VARCHAR(200) NOT NULL,
+
+	item_manufacturer 		VARCHAR(200) NOT NULL,
+
+	expiry_date 			DATE NOT NULL,
+
+	PRIMARY KEY				(commodity_id),
+
+	FOREIGN KEY 			(commodity_id) REFERENCES Commodity,
+	FOREIGN KEY 			(commodity_price) REFERENCES Commodity,
+	FOREIGN KEY 			(commodity_name) REFERENCES Commodity,
+
+	FOREIGN KEY 			(item_manufacturer) REFERENCES Item
+)
+
+CREATE TABLE Book(
+	print_date 				DATE NOT NULL,
+	language 				VARCHAR(200) NOT NULL,
+	author 					VARCHAR(200) NOT NULL,
+
+	commodity_id 			VARCHAR(200) NOT NULL,
+	commodity_price 		INT(100) NOT NULL,
+	commodity_name 			VARCHAR(200) NOT NULL,
+
+	item_manufacturer 		VARCHAR(200) NOT NULL,
+
+	PRIMARY KEY				(commodity_id),
+
+	FOREIGN KEY 			(commodity_id) REFERENCES Commodity,
+	FOREIGN KEY 			(commodity_price) REFERENCES Commodity,
+	FOREIGN KEY 			(commodity_name) REFERENCES Commodity
+
+	FOREIGN KEY 			(item_manufacturer) REFERENCES Item
+)
+
+CREATE TABLE Apparels(
+
+	commodity_id 			VARCHAR(200) NOT NULL,
+	commodity_price 		INT(100) NOT NULL,
+	commodity_name 			VARCHAR(200) NOT NULL,
+
+	item_manufacturer 		VARCHAR(200) NOT NULL,
+
+	type_of_material 	 	VARCHAR(200) NOT NULL,
+
+	PRIMARY KEY				(commodity_id),
+
+	FOREIGN KEY 			(commodity_id) REFERENCES Commodity,
+	FOREIGN KEY 			(commodity_price) REFERENCES Commodity,
+	FOREIGN KEY 			(commodity_name) REFERENCES Commodity,
+
+	FOREIGN KEY 			(item_manufacturer) REFERENCES Item
+)
+
+CREATE TABLE Automotive_Part(
+
+	parent_automotive_part 	VARCHAR(200) NOT NULL,
+	automotive_type 		VARCHAR(200) NOT NULL,
+	automotive_name 		VARCHAR(200) NOT NULL, 
+	automotive_model 		VARCHAR(200) NOT NULL,
+
+	FOREIGN KEY 			(parent_automotive_part) REFERENCES Automotive_Part(automotive_name),
+	FOREIGN KEY 			(part_id) REFERENCES Item(item_id),
+	FOREIGN KEY 			(part_price) REFERENCES Item(item_price),
+	FOREIGN KEY 			(part_name) REFERENCES Item(item_name),
+	FOREIGN KEY 			(part_manufacturer) REFERENCES Item(item_manufacturer)
+)
+
+CREATE TABLE Automotive_Part_consistof(...)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
